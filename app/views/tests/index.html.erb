@@ -10,6 +10,7 @@
     <th></th>
   </tr>
 
+<% tests = "[" %>
 <% @tests.each do |test| %>
   <tr>
     <td><%= test.name %></td>
@@ -19,9 +20,16 @@
     <td><%= link_to 'Edit', edit_test_path(test) %></td>
     <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <% tests = tests + "[" + test.results + "]," %>
 <% end %>
 </table>
 
+<% tests += "]" %>
 <br />
+
+<div id="chartdiv" style="height:400px;width:300px;"></div>
+<script language="javascript" type="text/javascript">
+	$.jqplot('chartdiv', <%= tests %>);
+</script>
 
 <%= link_to 'New Test', new_test_path %>
