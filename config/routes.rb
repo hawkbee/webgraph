@@ -1,4 +1,6 @@
 Webgraph::Application.routes.draw do
+  get "tests/compare"
+
   resources :tests
 
 

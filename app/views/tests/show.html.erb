@@ -15,10 +15,15 @@
   <%= @test.results %>
 </p>
 
-<div id="chartdiv" style="height:400px;width:300px;"></div>
+<div id="chartdiv" style="height:400px;width:900px;"></div>
 <script language="javascript" type="text/javascript">
 $.jqplot('chartdiv', [[<%= @test.results %>]]);
 </script>
 
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %>
+<%= form_tag action: :compare do %>
+	<%= hidden_field_tag "id[src]", @test.id %>
+	<%= select_tag "id[dst]", options_for_select(@tests.map { | test | [ test.id, test.id]}) %>
+	<%= submit_tag "Compare" %>
+<% end %>

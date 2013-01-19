@@ -13,6 +13,7 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+    @tests = Test.all
     @test = Test.find(params[:id])
 
     respond_to do |format|
@@ -79,5 +80,9 @@ class TestsController < ApplicationController
       format.html { redirect_to tests_url }
       format.json { head :no_content }
     end
+   end
+  def compare
+    @test1 = Test.find(params[:id][:src])
+    @test2 = Test.find(params[:id][:dst])
   end
 end

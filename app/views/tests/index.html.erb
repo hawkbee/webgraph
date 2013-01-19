@@ -18,7 +18,7 @@
     <td><%= test.results %></td>
     <td><%= link_to 'Show', test %></td>
     <td><%= link_to 'Edit', edit_test_path(test) %></td>
-    <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', test, method: :destroy, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% tests = tests + "[" + test.results + "]," %>
 <% end %>
@@ -27,7 +27,7 @@
 <% tests += "]" %>
 <br />
 
-<div id="chartdiv" style="height:400px;width:300px;"></div>
+<div id="chartdiv" style="height:800px;width:1400px;"></div>
 <script language="javascript" type="text/javascript">
 	$.jqplot('chartdiv', <%= tests %>);
 </script>
