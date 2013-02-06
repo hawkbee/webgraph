@@ -1,8 +1,9 @@
 <h1>Compare tests results <%= @test1.id %> and <%= @test2.id %></h1>
 <p> <%= @test1.id %>: <%= @test1.results %></p>
 <p> <%= @test2.id %>: <%= @test2.results %></p>
+<p> Difference:<%= @diff_test%></p>
 <div id="chartdiv" style="height:800px;width:1300px;"></div>
 <script language="javascript" type="text/javascript">
-	$.jqplot('chartdiv', [[<%= @test1.results %>], [<%= @test2.results %>]]);
+	$.jqplot('chartdiv', [[<%= @test1.results %>], [<%= @test2.results %>], [<%= @diff_test %>]]);
 </script>
 <%= link_to 'Back', tests_path %>

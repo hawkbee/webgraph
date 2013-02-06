@@ -84,5 +84,16 @@ class TestsController < ApplicationController
   def compare
     @test1 = Test.find(params[:id][:src])
     @test2 = Test.find(params[:id][:dst])
+    @diff_map = {}
+    @diff_test = ""
+    test1_map = {}
+    test2_map = {}
+    re = /\[(\d+)\s*,\s*(\d+)\],*/
+    @test1.results.scan(re).each { |key| test1_map[key[0].to_i] = key[1].to_i };
+    @test2.results.scan(re).each { |key| test2_map[key[0].to_i] = key[1].to_i };
+    test1_map.each { |key, value| @diff_map[key] = test2_map[key] - test1_map[key] }
+   # test1_map.each { |key, value| puts "#{key}=>#{value},"}
+   # test2_map.each { |key, value| puts "#{key}=>#{value},"}
+    @diff_map.each { |key, value| @diff_test << "[#{key},#{value}],"}
   end
 end
